@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		111A176619D0DB88000EE067 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 111A176519D0DB88000EE067 /* main.m */; };
 		111A176919D0DB88000EE067 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 111A176819D0DB88000EE067 /* AppDelegate.m */; };
-		111A176C19D0DB88000EE067 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 111A176B19D0DB88000EE067 /* ViewController.m */; };
 		111A176F19D0DB88000EE067 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 111A176D19D0DB88000EE067 /* Main.storyboard */; };
 		111A177119D0DB88000EE067 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 111A177019D0DB88000EE067 /* Images.xcassets */; };
-		111A177419D0DB88000EE067 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 111A177219D0DB88000EE067 /* LaunchScreen.xib */; };
 		111A178019D0DB88000EE067 /* CardOrganizerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 111A177F19D0DB88000EE067 /* CardOrganizerTests.m */; };
+		111A178E19D0E218000EE067 /* createNewCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 111A178D19D0E218000EE067 /* createNewCardViewController.m */; };
+		11263BB319D24A4F000AF712 /* AllCardsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11263BB219D24A4F000AF712 /* AllCardsTableViewController.m */; };
+		11263BB619D26218000AF712 /* CardInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11263BB519D26218000AF712 /* CardInfoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +33,17 @@
 		111A176519D0DB88000EE067 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		111A176719D0DB88000EE067 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		111A176819D0DB88000EE067 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		111A176A19D0DB88000EE067 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		111A176B19D0DB88000EE067 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		111A176E19D0DB88000EE067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		111A177019D0DB88000EE067 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		111A177319D0DB88000EE067 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		111A177919D0DB88000EE067 /* CardOrganizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CardOrganizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		111A177E19D0DB88000EE067 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		111A177F19D0DB88000EE067 /* CardOrganizerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardOrganizerTests.m; sourceTree = "<group>"; };
+		111A178C19D0E218000EE067 /* createNewCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = createNewCardViewController.h; sourceTree = "<group>"; };
+		111A178D19D0E218000EE067 /* createNewCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = createNewCardViewController.m; sourceTree = "<group>"; };
+		11263BB119D24A4F000AF712 /* AllCardsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllCardsTableViewController.h; sourceTree = "<group>"; };
+		11263BB219D24A4F000AF712 /* AllCardsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllCardsTableViewController.m; sourceTree = "<group>"; };
+		11263BB419D26218000AF712 /* CardInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardInfoViewController.h; sourceTree = "<group>"; };
+		11263BB519D26218000AF712 /* CardInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardInfoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +85,14 @@
 		111A176219D0DB88000EE067 /* CardOrganizer */ = {
 			isa = PBXGroup;
 			children = (
-				111A176719D0DB88000EE067 /* AppDelegate.h */,
-				111A176819D0DB88000EE067 /* AppDelegate.m */,
-				111A176A19D0DB88000EE067 /* ViewController.h */,
-				111A176B19D0DB88000EE067 /* ViewController.m */,
+				111A178C19D0E218000EE067 /* createNewCardViewController.h */,
+				111A178D19D0E218000EE067 /* createNewCardViewController.m */,
 				111A176D19D0DB88000EE067 /* Main.storyboard */,
+				11263BB419D26218000AF712 /* CardInfoViewController.h */,
+				11263BB519D26218000AF712 /* CardInfoViewController.m */,
+				11263BB119D24A4F000AF712 /* AllCardsTableViewController.h */,
+				11263BB219D24A4F000AF712 /* AllCardsTableViewController.m */,
 				111A177019D0DB88000EE067 /* Images.xcassets */,
-				111A177219D0DB88000EE067 /* LaunchScreen.xib */,
 				111A176319D0DB88000EE067 /* Supporting Files */,
 			);
 			path = CardOrganizer;
@@ -96,6 +101,8 @@
 		111A176319D0DB88000EE067 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				111A176719D0DB88000EE067 /* AppDelegate.h */,
+				111A176819D0DB88000EE067 /* AppDelegate.m */,
 				111A176419D0DB88000EE067 /* Info.plist */,
 				111A176519D0DB88000EE067 /* main.m */,
 			);
@@ -200,7 +207,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				111A176F19D0DB88000EE067 /* Main.storyboard in Resources */,
-				111A177419D0DB88000EE067 /* LaunchScreen.xib in Resources */,
 				111A177119D0DB88000EE067 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,7 +225,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				111A176C19D0DB88000EE067 /* ViewController.m in Sources */,
+				11263BB619D26218000AF712 /* CardInfoViewController.m in Sources */,
+				11263BB319D24A4F000AF712 /* AllCardsTableViewController.m in Sources */,
+				111A178E19D0E218000EE067 /* createNewCardViewController.m in Sources */,
 				111A176919D0DB88000EE067 /* AppDelegate.m in Sources */,
 				111A176619D0DB88000EE067 /* main.m in Sources */,
 			);
@@ -250,14 +258,6 @@
 				111A176E19D0DB88000EE067 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		111A177219D0DB88000EE067 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				111A177319D0DB88000EE067 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -412,6 +412,7 @@
 				111A178519D0DB88000EE067 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		111A178619D0DB88000EE067 /* Build configuration list for PBXNativeTarget "CardOrganizerTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +421,7 @@
 				111A178819D0DB88000EE067 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
