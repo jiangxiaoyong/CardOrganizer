@@ -7,22 +7,74 @@
 //
 
 #import "CardInfoViewController.h"
+#import "createNewCardViewController.h"
 
 @interface CardInfoViewController ()
-
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UITextField *cardNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *cardNumberTextField;
+@property (strong,nonatomic)UIImage *image;
 @end
 
 @implementation CardInfoViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (void)setImage:(UIImage *)image
+{
+    self.imageView.image = image;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(UIImage *)image
+{
+    return self.imageView.image;
 }
+
+- (void)setcardPath:(NSMutableArray *)cardPath
+{
+    _cardPath = cardPath;
+}
+
+-(NSMutableArray *)cardPath
+{
+    if (!_cardPath) {
+        _cardPath = [[NSMutableArray alloc]init];
+    }
+    return _cardPath;
+}
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    for (NSString *str in self.cardPath) {
+        if(str){
+            NSLog(@"str = %@", str);
+        }
+    }
+    
+    NSString *textDataPathStr = [[self.cardPath objectAtIndex:0] objectAtIndex:0];
+    NSString *imageDataPathStr = [[self.cardPath  objectAtIndex:0] objectAtIndex:1];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if ([fileManager fileExistsAtPath:textDataPathStr] || [fileManager fileExistsAtPath:imageDataPathStr]) {
+
+        
+        NSArray *data = [[NSArray alloc] initWithContentsOfFile:textDataPathStr];
+        
+        self.cardNameTextField.text = [data objectAtIndex:0];
+        self.cardNumberTextField.text = [data objectAtIndex:1];
+        
+        UIImage *customImage = [UIImage imageWithContentsOfFile:imageDataPathStr];
+        self.imageView.image = customImage;
+
+        
+    }else{
+        NSLog(@"Did not found corresponding file");
+    }
+}
+
+
 
 /*
 #pragma mark - Navigation

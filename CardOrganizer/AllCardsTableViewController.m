@@ -7,12 +7,21 @@
 //
 
 #import "AllCardsTableViewController.h"
+#import "createNewCardViewController.h"
+#import "CardInfoViewController.h"
 
 @interface AllCardsTableViewController ()
 
 @end
 
 @implementation AllCardsTableViewController
+
+//refresh table view
+- (IBAction)refresh
+{
+    [self.refreshControl beginRefreshing];
+    [self.refreshControl endRefreshing];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,77 +33,117 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSMutableArray *)cardPath
+{
+    if (!_cardPath) {
+        _cardPath = [[NSMutableArray alloc]init];
+    }
+    return _cardPath;
+}
+
+//reconstruct table when go back
+
+-(void)setcardPath:(NSMutableArray *)cardPath
+{
+    _cardPath = cardPath;
+    [self.tableView reloadData];
+}
+
+-(NSMutableArray *)cards
+{
+    if (!_cards) {
+        _cards = [[NSMutableArray alloc]init];
+    }
+    return _cards;
+}
+
+-(void)setcards:(NSMutableArray *)cards
+{
+    _cards = cards;
+}
+
+
+//pass the array which store all file path about a new card, including text and image file path
+- (IBAction)createNewCardDone:(UIStoryboardSegue *)segue
+{
+    if ([segue.sourceViewController isKindOfClass:[createNewCardViewController class]]) {
+        createNewCardViewController *cncVC = (createNewCardViewController *)segue.sourceViewController;
+        self.cardPath = cncVC.cardFilePathArray;
+        if (self.cardPath) {
+            NSLog(@"success added card");
+            [self.cards addObject:self.cardPath];
+            NSLog(@"cards # = %ld", [self.cards count]);
+            
+        }else{
+            NSLog(@"Failed to added new card");
+        }
+    }
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.cards count];
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"Card Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier
+                                                            forIndexPath:indexPath];
+    for (NSMutableArray *oneCardInfo in self.cardPath) {
+        if (oneCardInfo) {
+            
+            NSString *cardTextPath = [oneCardInfo objectAtIndex:0];
+            NSArray *data = [[NSArray alloc] initWithContentsOfFile:cardTextPath];
+            cell.textLabel.text = [data objectAtIndex:0];
+            cell.detailTextLabel.text = [data objectAtIndex:1];
+
+        }
+    }
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+
+- (void)prepareCardInfoViewController:(CardInfoViewController *)civc toDisplayCardInfo:(NSMutableArray *)cardInfo
+{
+    civc.cardPath = cardInfo;
+    
+    for (NSString *str in cardInfo) {
+        if(str){
+            NSLog(@"str = %@", str);
+        }
+    }
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
+        // find out which row in which section we're seguing from
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        if (indexPath) {
+            // found it ... are we doing the Display Photo segue?
+            if ([segue.identifier isEqualToString:@"Display Card"]) {
+                // yes ... is the destination an ImageViewController?
+                if ([segue.destinationViewController isKindOfClass:[CardInfoViewController class]]) {
+                    [self prepareCardInfoViewController:segue.destinationViewController
+                                      toDisplayCardInfo:self.cards[indexPath.row]];
+                }
+            }
+        }
+    }
+    
 }
-*/
+
 
 @end

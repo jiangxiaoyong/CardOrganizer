@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#define savedImage @"apple"
+
+
 @interface createNewCardViewController : UIViewController
+
+@property(nonatomic, strong) NSMutableArray *cardFilePathArray;
 
 @end

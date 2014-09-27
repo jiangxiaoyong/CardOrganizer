@@ -10,4 +10,6 @@
 
 @interface CardInfoViewController : UIViewController
 
+@property(nonatomic, strong) NSMutableArray * cardPath;
+
 @end

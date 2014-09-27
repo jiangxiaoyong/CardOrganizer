@@ -10,4 +10,7 @@
 
 @interface AllCardsTableViewController : UITableViewController
 
+@property (nonatomic,strong) NSMutableArray * cardPath;
+@property (nonatomic,strong) NSMutableArray * cards;
+
 @end
